@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matchi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h4>Nova Car</h4>
+        </div>
+        
+        <div class="options">
+            <a href="{% url "home" %}"id="home">
+                <b>Home</b>
+            </a>
+            <a href="{% url "voiture_vendu" %}" id="voiture_vendu">
+                <b>Voiture Vendu</b>
+            </a>
+            <a href="#" id="gestion_client">
+                <b>Voiture Location</b>
+            </a>
+            <a href="#" id="academie">
+                <b>Sponsoise</b>
+            </a>
+        </div>
+    </div>
+    
+    <div class="contenu">
+        {% block Voiture_Vendu %}{% endblock Voiture_Vendu %}
+        {% block Home %}{% endblock Home %}
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+        const activeLink = localStorage.getItem('activeLink');
+        if (activeLink) {
+            $('#' + activeLink).addClass('active-option');
+        }
+        $('.options a').click(function(event) {
+            localStorage.setItem('activeLink', $(this).attr('id'));
+            $('.options a').removeClass('active-option');
+            $(this).addClass('active-option');
+        });
+    });
+</script>
+
+</html>
