@@ -19,7 +19,7 @@ class Moughataa(models.Model):
     wilaye = models.ForeignKey(Wilaye, on_delete=models.CASCADE)
     def __str__(self):
         return self.nom_ar
-    
+
 class Utilisateur(models.Model):
     nom_ar = models.CharField(max_length=100)
     prenom_ar = models.CharField(max_length=100)
@@ -82,7 +82,6 @@ class VoitureLocation(models.Model):
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     date_ajout = models.DateTimeField(auto_now_add=True)
 
-    # 5 images
     image1 = models.ImageField(upload_to='images/', blank=True, null=True)
     image2 = models.ImageField(upload_to='images/', blank=True, null=True)
     image3 = models.ImageField(upload_to='images/', blank=True, null=True)
@@ -95,11 +94,14 @@ class VoitureLocation(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)  # Position GPS
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)  # Position GPS
 
+
+
+def get_first_voiture_vendu():
+    return VoitureVendu.objects.first()
+
+
 class Sponsorise(models.Model):
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    voiture = GenericForeignKey('content_type', 'object_id')
+    voiture = models.ForeignKey(VoitureVendu, on_delete=models.CASCADE,default=get_first_voiture_vendu )
     date_debut = models.DateField()
     date_fin = models.DateField()
     actif = models.BooleanField(default=True)
