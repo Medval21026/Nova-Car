@@ -27,6 +27,39 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('home', views.home, name='home'),
     path('voiture_vendu', views.voiture_vendu, name='voiture_vendu'),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    # ******************************************************************* mobile urls *******************************************************************
+    path('VoituresVendu_status_vendu', get_vendus, name='get_vendus'),
+
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

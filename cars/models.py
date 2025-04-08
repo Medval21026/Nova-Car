@@ -52,6 +52,8 @@ class VoitureVendu(models.Model):
     carburant = models.CharField(max_length=20, choices=CARBURANT)
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     date_ajout = models.DateTimeField(auto_now_add=True)
+    distance = models.CharField(max_length=50,default="0")
+    description = models.TextField(blank=True, null=True)  
 
     # 5 images
     image1 = models.ImageField(upload_to='images/', blank=True, null=True)
@@ -90,7 +92,7 @@ class VoitureLocation(models.Model):
 
     disponible = models.BooleanField(default=True)
     duree_minimale = models.IntegerField(default=1)  # Ajout du champ entier (ex: durée min de location)
-    description = models.TextField(blank=True, null=True)  # Ajout du champ description
+    description = models.TextField(blank=True, null=True)  
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)  # Position GPS
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)  # Position GPS
 

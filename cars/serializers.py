@@ -35,3 +35,4 @@ class SponsoriseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sponsorise
         fields = '__all__'
+        depth = 1

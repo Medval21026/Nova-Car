@@ -29,3 +29,17 @@ class VoitureLocationViewSet(viewsets.ModelViewSet):
 class SponsoriseViewSet(viewsets.ModelViewSet):
     queryset = Sponsorise.objects.all()
     serializer_class = SponsoriseSerializer
+
+
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def get_vendus(request):
+    # Get all sold cars
+    voitures_vendues = VoitureVendu.objects.filter(vendu=True)
+    serializer = VoitureVenduSerializer(voitures_vendues, many=True)
+    return Response(serializer.data)

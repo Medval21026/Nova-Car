@@ -29,11 +29,8 @@ SECRET_KEY = 'django-insecure-gbyc5bz+zsg5(^2hu7mass($ix(t14#fzcv)zytmg6jq6a9f65
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =True
-# LOGIN_URL = 'login'
-ALLOWED_HOSTS = ['*']
+ 
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'cars',
@@ -53,8 +50,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-        'corsheaders.middleware.CorsMiddleware',
-
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -100,7 +96,19 @@ DATABASES = {
     }
 }
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'novacar',
+#         'USER': 'matchi',
+#         'PASSWORD': 'matchi@database',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#         'OPTIONS': {
+#             'sql_mode': 'STRICT_TRANS_TABLES',
+#         },
+#     }
+# }
 
 
 # Password validation
