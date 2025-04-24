@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-
+ALLOWED_HOSTS = ['*']
+APPEND_SLASH=False
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

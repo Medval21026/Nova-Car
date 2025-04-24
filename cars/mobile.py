@@ -30,7 +30,11 @@ class SponsoriseViewSet(viewsets.ModelViewSet):
     queryset = Sponsorise.objects.all()
     serializer_class = SponsoriseSerializer
 
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import VoitureVendu
+from .serializers import VoitureVenduSerializer
 
 
 
@@ -43,3 +47,34 @@ def get_vendus(request):
     voitures_vendues = VoitureVendu.objects.filter(vendu=True)
     serializer = VoitureVenduSerializer(voitures_vendues, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def get_count(request):
+    # Get all sold cars
+    voitures_etat_vendues = VoitureVendu.objects.filter(vendu=True).count()
+    vendus_total = VoitureVendu.objects.all().count()
+    location_total = VoitureLocation.objects.all().count()
+    return Response({"vendus": voitures_etat_vendues, "vendus_total": vendus_total, "location_total": location_total})
+
+ 
+
+
+class AjouterVoitureVendu(APIView):
+    def post(self, request, format=None):
+        serializer = VoitureVenduSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print("adding car failed : ",serializer.errors)
+        print(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class AjouterVoitureLocation(APIView):
+    def post(self, request, format=None):
+        serializer = VoitureLocationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print("adding car failed : ",serializer.errors)
+        print(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

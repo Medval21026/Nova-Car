@@ -64,6 +64,10 @@ class VoitureVendu(models.Model):
 
     vendu = models.BooleanField(default=False)
 
+
+
+
+
 class VoitureLocation(models.Model):
     TRANSMISSION = [
         ('Automatique', 'Automatique'),

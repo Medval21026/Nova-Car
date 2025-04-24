@@ -56,7 +56,10 @@ urlpatterns = [
 
 
     # ******************************************************************* mobile urls *******************************************************************
-    path('VoituresVendu_status_vendu', get_vendus, name='get_vendus'),
+    path('VoituresVendu_status_vendu/', get_vendus, name='get_vendus'),
+    path('VoituresCount/', get_count, name='get_count'),
+    path('VoituresVendu/ajouter/', AjouterVoitureVendu.as_view(), name='ajouter-voiture-vendue'),
+    path('VoituresLocation/ajouter/', AjouterVoitureLocation.as_view(), name='ajouter-voiture-location'),
 
 
 
